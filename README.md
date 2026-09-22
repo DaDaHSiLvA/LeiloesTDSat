@@ -6,7 +6,7 @@ O **LeiloesTDSat** é um sistema desenvolvido em Java para a gestão de leilões
 Projeto desenvolvido para fins académicos como parte das atividades da **UC11** do curso **Técnico em Desenvolvimento de Sistemas**.
 
 ## Tecnologias Utilizadas
-* **Java** (JDK 8 / NetBeans)
+* **Java**
 * **Java Swing** (Interface Gráfica)
 * **MySQL** (Banco de Dados relacional)
 * **JDBC / MySQL Connector** (Driver de conexão à base de dados)
