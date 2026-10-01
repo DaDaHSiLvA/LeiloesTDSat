@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -140,17 +143,35 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        ProdutosDTO produto = new ProdutosDTO();
-        String nome = cadastroNome.getText();
-        String valor = cadastroValor.getText();
-        String status = "A Venda";
-        produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
-        produto.setStatus(status);
-        
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
-        
+try {
+            String nome = cadastroNome.getText();
+            String valorTexto = cadastroValor.getText();
+            
+            if (nome.isEmpty() || valorTexto.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
+                return;
+            }
+            
+            int valor = Integer.parseInt(valorTexto);
+            
+            ProdutosDTO produto = new ProdutosDTO();
+            produto.setNome(nome);
+            produto.setValor(valor);
+            produto.setStatus("A Venda");
+            
+            ProdutosDAO produtodao = new ProdutosDAO();
+            boolean sucesso = produtodao.cadastrarProduto(produto);
+            
+            if (sucesso) {
+                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+                cadastroNome.setText("");
+                cadastroValor.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha ao cadastrar o produto.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "O valor deve conter apenas números inteiros.");
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
